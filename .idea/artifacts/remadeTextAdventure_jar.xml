@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="remadeTextAdventure:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/remadeTextAdventure_jar</output-path>
+    <root id="archive" name="remadeTextAdventure.jar">
+      <element id="module-output" name="remadeTextAdventure" />
+    </root>
+  </artifact>
+</component>

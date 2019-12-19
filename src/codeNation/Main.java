@@ -1,0 +1,18 @@
+package codeNation;             import java.io.File;            import java.io.IOException; import java.util.*;     // 'com.company' contains Main, 'File', 'IOException' and 'util' contain some other necessary functions
+public class Main {             static String userIn = null;                                                        // 'userIn' is used to hold user's input
+    public static void main(    String[] args)                  throws IOException {                                // 'IOException' is used for error handling
+        Scanner file =          new Scanner(new File("story")); Scanner in =                new Scanner(System.in); // 'file' holds the file 'story', in is used to get the user's input
+        ArrayList<String> inv = new ArrayList<>();              ArrayList<String> lines =   new ArrayList<>();      // 'inv' (the inventory) and 'lines' are empty String ArrayLists which will hold data later
+        while                   (file.hasNextLine())            lines.add(                  file.nextLine());       // for as long as there is a next 'line', the next 'line' of the story will be added to 'lines'; all lines of 'file' are added to 'lines'
+        for                     (int line = 0;                  line < lines.size();        line++){                // lines 8 to 18 of this program are run once per 'line' in 'lines', unless the story dictates otherwise
+            if     (lines.get(line).startsWith(    "if")){if(!inv.contains(lines.get(line).substring(3)))line++;}                // the next 'line' is skipped unless 'inv' contains the rest of the 'line' after "if "
+            else if(lines.get(line).startsWith(   "not")){if(inv.contains(lines.get(line).substring(4)))line++;}                 // the next 'line' is skipped if 'inv' contains the rest of the 'line' after "not "
+            else if(lines.get(line).startsWith(   "add")){inv.add(lines.get(line).substring(4));}                                // the rest of the 'line' after "add " is added to inv
+            else if(lines.get(line).startsWith( "print")){System.out.println(lines.get(line).substring(6));}                     // the rest of the 'line' after "print " is printed to the user's console
+            else if(lines.get(line).startsWith("remove")){inv.remove(lines.get(line).substring(7));}                             // the rest of the line after "remove " will be removed from inv
+            else if(lines.get(line).startsWith("choice")){userIn = in.nextLine().toLowerCase();}                                 // userIn becomes a line of input from the user
+            else if(lines.get(line).startsWith("option")){if(!userIn.equals(lines.get(line).substring(7).toLowerCase()))line++;} // the next 'line' is skipped unless 'userIn' matches the rest of the line after "option "
+            else if(lines.get(line).startsWith("pause" )){System.in.read();}                                                     // the console waits for the enter key to be pressed before resuming
+            else if(lines.get(line).startsWith("line"  )){System.out.println();}                                                 // a blank line is printed to the console
+            else if(lines.get(line).startsWith("go"    )){for(int checker=0; checker < lines.size(); checker++){                 // a for loop containing every 'line' is run checking for a 'line' which starts with the rest of the current line after "go "
+                 if(lines.get(checker).equals(lines.get(line).substring(3)))line = checker;}}}}}                                 //     if one is found, the current 'line' is set to that number, effectively skipping the story to that 'line'
